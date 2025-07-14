@@ -1,0 +1,4 @@
+.maskedBlur {
+  -webkit-mask-image: linear-gradient(to bottom, white , transparent );
+  mask-image: linear-gradient(to bottom, white , transparent );
+}
