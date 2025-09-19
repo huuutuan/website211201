@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-export function useSectionScroll(containerRef: React.RefObject<HTMLDivElement | null>, delay: number = 800) {
+export function useSectionScroll(containerRef: React.RefObject<HTMLDivElement | null>, delay: number = 800, onSectionChange?: (index: number) => void) {
   const isScrolling = useRef(false);
   const currentIndex = useRef(0);
 
@@ -31,6 +31,7 @@ export function useSectionScroll(containerRef: React.RefObject<HTMLDivElement | 
       isScrolling.current = true;
       currentIndex.current = nextIndex;
       wrapper.style.transform = `translate3d(0, -${nextIndex * 100}vh, 0)`;
+      if (onSectionChange) onSectionChange(nextIndex);
       console.log(`Scrolling to section ${nextIndex + 1}`);
       console.log(dir);
       
@@ -46,5 +47,5 @@ export function useSectionScroll(containerRef: React.RefObject<HTMLDivElement | 
       wrapper.style.transition = '';
       wrapper.style.willChange = '';
     };
-  }, [containerRef, delay]);
+  }, [containerRef, delay, onSectionChange]);
 }

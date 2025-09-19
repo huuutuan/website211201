@@ -1,15 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Navbar } from "./Navbar";
 import styles from "./page.module.css";
 import { useSectionScroll } from "@/hooks/useSectionScroll";
 
-import OneDivScroll from "@/components/OneDivScroll";
-
 export default function Home1() {
   const containerRef = useRef<HTMLDivElement>(null);
-  useSectionScroll(containerRef, 1000);
+  const [activeSection, setActiveSection] = useState(0);
+  useSectionScroll(containerRef, 1000, setActiveSection);
+
   return (
     <div
       ref={containerRef}
@@ -39,13 +39,22 @@ export default function Home1() {
             {/* Nội dung trang chủ ở đây */}
           </div>
         </div>
+
         <div className="h-screen scroll-section flex items-center justify-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-center px-4">
-            Chào mừng đến với trang chủ của chúng tôi!
-          </h1>
+          <h3 className={cn("text-3xl md:text-5xl font-bold text-center px-4") }>
+            {"giá trị truyền thống văn hóa được lưu truyền!".split("").map((char, index) => (
+              <span
+                key={index}
+                className={cn(activeSection === 1 ? styles.wordFadeIn: "inline-block")}
+                style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+          </h3>
         </div>
         <div className="h-screen scroll-section flex items-center justify-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-center px-4">
+          <h1 className={cn("text-3xl md:text-5xl font-bold text-center px-4")}>
             Section 3
           </h1>
         </div>

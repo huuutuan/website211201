@@ -24,7 +24,7 @@ const NavbarItem = ({
 	isActive,
 }: NavbarItemProps) => {
 	return (
-		<Button variant="outline" className={cn("bg-transparent hover:bg-transparent rounded-full hover:border-primary border-transparent px-3.5 text-lg" , isActive && "bg-black text-white hover:bg-black hover:text-white")} asChild>
+		<Button variant="outline" className={cn("bg-transparent rounded-full border-transparent px-3.5 text-lg")} asChild>
 			<Link href={href }>
 				{children}
 			</Link>
@@ -50,14 +50,21 @@ const navbarItems = [
 export const Navbar = () => {
 	const pathName = usePathname();
 	return (
-		<nav className="h-20 text-white  justify-between flex font-medium bg-transparent dark:bg-gray-900">
-			<Link href="/" className="flex items-center pl-6">
-				<span className={cn("text-4xl font-semibold", poppins.className)}>
-					Bánh Cáy
-				</span>
-			</Link>
-			<div className="items-center gap-4 hidden lg:flex">
-				{navbarItems.map((item) => (
+		<nav className="h-20 text-white grid grid-cols-3 items-center font-medium bg-transparent dark:bg-gray-900">
+			<div>	
+				<Link href="/" className="flex items-center pl-6">
+					<span className={cn("text-3xl font-normal", poppins.className)}>
+						Đặc Sản Thái Bình
+					</span>
+				</Link>
+			</div>
+
+			<div>
+
+			</div>
+
+			<div className=" flex justify-end pr-6">
+				{/* {navbarItems.map((item) => (
 					<NavbarItem
 						key={item.href}
 						href={item.href}
@@ -65,7 +72,16 @@ export const Navbar = () => {
 					>
 						{item.children}
 					</NavbarItem>
-				))}
+				))} */}
+				
+
+				<Button variant="outline" className={cn("bg-transparent rounded-full border-transparent px-3.5 text-2xl")} >
+					<Link href="/">
+						Liên hệ
+					</Link>
+				</Button>
+				
+				
 			</div>
 		</nav>
 	)
